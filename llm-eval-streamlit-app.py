@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -49,6 +48,7 @@ def plot_gauge_subplots(metrics, avg_scores):
                     ],
                 }
 
+            # Add gauge plot to the subplot
             fig.add_trace(
                 go.Indicator(
                     mode="gauge+number",
@@ -75,6 +75,7 @@ def plot_gauge_subplots(metrics, avg_scores):
 
     st.plotly_chart(fig)
 
+# Function to create histograms with fixed sizes
 def plot_histograms_fixed_size(metrics, results_df):
     num_metrics = len(metrics)
     cols = 2  # Maximum 2 plots per row
@@ -95,12 +96,14 @@ def plot_histograms_fixed_size(metrics, results_df):
     for i, (metric, ax) in enumerate(zip(metrics, axes)):
         if metric in results_df.columns:  # Ensure the metric exists in the DataFrame
             if metric == "F1 Score":
+                # Line plot for F1 Score
                 sns.lineplot(x=results_df.index, y=results_df[metric], ax=ax, marker="o")
                 xmin, xmax = 0, len(results_df)-1
                 ax.set_xlim(xmin, xmax)  # Set the x-axis range dynamically
                 ax.set_xticks(range(int(xmin), int(xmax) + 1))  # Set x-axis ticks to display only integers within the range
             
             else:
+                # Histogram plot for other metrics
                 sns.histplot(results_df[metric], bins=5, binrange=(1, 5), kde=False, ax=ax)
                 xmin, xmax = 0, 5
                 ax.set_xlim(0.5, 5.5)  # Shift x-axis limits to center the ticks
@@ -119,7 +122,7 @@ def plot_histograms_fixed_size(metrics, results_df):
     plt.tight_layout()
     st.pyplot(fig)
 
-
+# Function to compute metrics and display results
 def compute_and_display_metrics(metrics_to_compute, df, question_col, ground_truth_col, answer_col, context_col=None):
     results = {}
 
@@ -150,9 +153,9 @@ def compute_and_display_metrics(metrics_to_compute, df, question_col, ground_tru
     # Plot the histograms with fixed subplot sizes
     plot_histograms_fixed_size(metrics, results_df)
 
+    # Display the results in a dataframe format
     st.dataframe(results_df)
     return results 
-
 
 # Streamlit app setup
 st.title("RAG Evaluation")
@@ -164,6 +167,7 @@ with st.sidebar:
     
     # API Key input
     api_key = st.text_input("OpenAI API key", type="password")
+    
 
     # Model selection dropdown
     model_name = st.selectbox(
@@ -213,9 +217,13 @@ if uploaded_file is not None:
         if st.checkbox("Compute Relevance Score"):
             metrics_to_compute.append("relevance_score")
 
+    # Button to trigger the computation of metrics
     if st.button("Compute Metrics"):
         results = compute_and_display_metrics(metrics_to_compute, df, question_col, ground_truth_col, answer_col, context_col)
+        
         # Generate and display the conclusion
         conclusion = metrics_calculator.generate_llm_conclusion(results)
+        
+        # Display the conclusion in the app
         st.subheader("Conclusion and Interpretation")
         st.write(conclusion)
