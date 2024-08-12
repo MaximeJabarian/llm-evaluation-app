@@ -1,4 +1,5 @@
 # LLM Evaluation App
+![Demo of RAG Evaluation App](demo_fast.gif)
 
 This repository contains a Streamlit application designed for evaluating the performance of Question-Answering (QA) models using various metrics. The app provides a user-friendly interface to upload datasets, select models, and visualize the results through intuitive graphs and plots.
 
