@@ -17,8 +17,8 @@ To get started with the LLM Evaluation App, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/MaximeJabarian/rag-evaluation-app.git
-   cd rag-evaluation-app
+   git clone https://github.com/MaximeJabarian/llm-evaluation-app.git
+   cd llm-evaluation-app
    ```
 
 2. **Create a virtual environment:**
