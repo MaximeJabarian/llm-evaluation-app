@@ -58,13 +58,6 @@ To get started with the LLM Evaluation App, follow these steps:
 5. **Visualize Results:**
    - Once the metrics are computed, results are displayed through various graphs, including gauge plots and histograms, providing a comprehensive view of the model's performance.
 
-## Files
-
-- `QAMetrics.py`: Contains the class and methods for computing the evaluation metrics.
-- `README.md`: The readme file you are currently reading.
-- `demo_fast.gif`: A GIF demonstrating the app in action.
-- `llm-eval-streamlit-app.py`: The main Streamlit application file.
-- `requirements.txt`: A list of Python dependencies required to run the app.
 
 ## Features
 
