@@ -9,7 +9,6 @@ This repository contains a Streamlit application designed for evaluating the per
 - [Usage](#usage)
 - [Files](#files)
 - [Features](#features)
-- [License](#license)
 
 ## Installation
 
