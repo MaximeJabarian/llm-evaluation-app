@@ -68,5 +68,5 @@ To get started with the LLM Evaluation App, follow these steps:
 
 ## License
 
-This project is open-source.
+This project is open-source!
 
